@@ -1,0 +1,52 @@
+{{ define "content" }}
+    <script src="/assets/index.js"></script>
+
+    <form name="contactForm" id="contactForm" method="post">
+        <fieldset>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <div class="form-input">
+                <input name="firstName" id="firstName" value=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <div class="form-input">
+                <input name="lastName" id="lastName" value=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <div class="form-input">
+                <input name="phone" id="phone" value=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="officePhone">Office Phone:</label>
+            <div class="form-input">
+                <input name="phone" id="officePhone" value=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <div class="form-input">
+                <input name="city" id="city" value=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="state">State:</label>
+            <div class="form-input">
+                <input name="state" id="state" value=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zip">Zip:</label>
+            <div class="form-input">
+                <input name="zip" id="zip" value=""/>
+            </div>
+        </div>
+
+        <button type="button" class="sign-up-button" id="save" onclick="">Submit</button>
+        </fieldset>
+    </form>
+{{ end }}
