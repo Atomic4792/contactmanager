@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de3f6e75-8004-4478-bf83-f742ffb76a91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/jquery-1.12.4.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/jquery-ui.1.12.1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jquery.validate.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jquery.validate.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/manager.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/manager.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site.go" beforeDir="false" afterPath="$PROJECT_DIR$/site.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layouts/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layouts/default.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www.advanced_id.error.log" beforeDir="false" afterPath="$PROJECT_DIR$/www.advanced_id.error.log" afterDir="false" />
     </list>

@@ -24,14 +24,31 @@ $().ready( function() {
          lastName = $("#lastName").val();
         let phoneNumber = $("#phone").val();
         let fullName =firstName +' '+ lastName;
-       $(".accordion").append('<h3 id="header">'+fullName+'</h3>'+'<div class="contactInfo" '+ '' +
+      /* $(".accordion").append('<h3 id="header">'+fullName+'</h3>'+'<div class="contactInfo" '+ '' +
            '<p id="item">'+phoneNumber+'</p'+
            '</div>'
-       );
-        $( function() {
+       ); */
+       /* $( function() {
             $( ".accordion").accordion();
-        } );
+        } ); */
+        $(".group-list").append('<button class="accordion">'+fullName+'</button>'+'<div class="panel" '+ '' +
+            '<p>'+phoneNumber+'</p'+
+            '</div>'
+        );
+        let acc = document.getElementsByClassName("accordion");
+        let i;
 
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                let panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
     })
 
 });
