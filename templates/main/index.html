@@ -1,5 +1,9 @@
 {{ define "content" }}
     <script src="/assets/index.js"></script>
+    <link rel="stylesheet" href="/assets/manager.css">
+
+<div class="split left">
+    <div class="centered">
 
     <form name="contactForm" id="contactForm" method="post">
         <fieldset>
@@ -46,7 +50,39 @@
             </div>
         </div>
 
-        <button type="button" class="sign-up-button" id="save" onclick="">Submit</button>
+
+
+            <button type="button" class="sign-up-button" id="save" onclick="">Submit</button>
         </fieldset>
     </form>
+    </div>
+</div>
+<div class="split right">
+    <div class="centered">
+
+        <div class="group-list">
+            <div class="accordion">
+                <h3></h3>
+                <div>
+                    <p id="item"> </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+        <!-- TODO
+    <div class="List-Details">
+        <input type="hidden" name="firstNameList" id="firstNameList" value="0"/>
+        <input type="hidden" name="lastNameList" id="lastNameList" value="0"/>
+        <input type="hidden" name="phoneList" id="phoneList" value="0"/>
+        <input type="hidden" name="officePhoneList" id="officePhoneList" value="0"/>
+        <input type="hidden" name="cityList" id="cityList" value="0"/>
+        <input type="hidden" name="stateList" id="stateList" value="0"/>
+        <input type="hidden" name="zipList" id="zipList" value="0"/>
+
+    </div>
+    -->
 {{ end }}

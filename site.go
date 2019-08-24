@@ -30,7 +30,7 @@ func (ac *appContext) uploadContact(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"data": "ok"})
-	fmt.Printf("%+v",form)
+	fmt.Printf("%+v", form)
 	query := "insert into contacts (first_name, last_name, phone, office_phone, " +
 		"city, state, zip) " +
 		"values ($1, $2, $3, $4, $5, $6, $7)"
@@ -38,10 +38,7 @@ func (ac *appContext) uploadContact(c *gin.Context) {
 		&form.OfficePhone, &form.City, &form.State, &form.Zip)
 	ac.DBErrorCheck(err, query)
 
-
-
 }
-
 
 /*func (ac *appContext) handlerPostData(c *gin.Context) {
 	ac.Log.LogMsg(1, "in context handler post data")

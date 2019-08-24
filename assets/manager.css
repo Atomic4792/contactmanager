@@ -77,13 +77,13 @@ input {
     border: 1px solid #000;
     margin-top: 10px;
 }
-ul {
+.group-list {
     list-style-type: none; /* Remove bullets */
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margins */
 }
 
-ul li {
+.list #listItem {
     border: 1px solid #ddd; /* Add a thin border to each list item */
     margin-top: -1px; /* Prevent double borders */
     background-color: #f6f6f6; /* Add a grey background color */
