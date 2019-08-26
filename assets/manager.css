@@ -37,7 +37,7 @@ table {
 .ui-draggable, .ui-droppable {
     background-position: top;
 }
-/* START OF ACCORDION STYLE*/
+/* START OF ACCORDION STYLE vanilla JS*/
 /*
 .accordion {
     background-color: #eee;
