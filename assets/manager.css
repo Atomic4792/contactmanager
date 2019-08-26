@@ -30,6 +30,42 @@
     transform: translate(-50%, -50%);
     text-align: center;
 }
+table {
+    font-size: 1em;
+}
+
+.ui-draggable, .ui-droppable {
+    background-position: top;
+}
+/* START OF ACCORDION STYLE vanilla JS*/
+/*
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
+
+ */
+/* END OF ACCORDION STYLE */
+
 
 
 fieldset {
@@ -77,15 +113,16 @@ input {
     border: 1px solid #000;
     margin-top: 10px;
 }
+/*
 .group-list {
-    list-style-type: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margins */
-}
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 
 .list #listItem {
-    border: 1px solid #ddd; /* Add a thin border to each list item */
-    margin-top: -1px; /* Prevent double borders */
-    background-color: #f6f6f6; /* Add a grey background color */
-    padding: 12px; /* Add some padding */
+    border: 1px solid #ddd;
+    margin-top: -1px;
+    background-color: #f6f6f6;
+    padding: 12px;
 }
+*/
