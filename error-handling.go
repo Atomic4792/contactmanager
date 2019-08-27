@@ -1,9 +1,11 @@
-package Logger
+package main
 
 import (
-	"../Config"
+	"database/sql"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
+	"net/http"
 	"os"
 )
 
@@ -32,7 +34,7 @@ func (e *ErrorHandler) SetLogLevel(level int) {
 	}
 }
 
-func (e *ErrorHandler) InitLog(c *Config.Params) {
+func (e *ErrorHandler) InitLog(c *Params) {
 	e.Log = logrus.New()
 
 	logFile, err := os.OpenFile(c.LogFile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
@@ -54,7 +56,7 @@ func (e *ErrorHandler) InitLog(c *Config.Params) {
 	e.SetLogLevel(c.LogLevel)
 }
 
-func (e *ErrorHandler) LogMsg(levelNum int, message string) {
+func (e *ErrorHandler) Msg(levelNum int, message string) {
 	if levelNum >= e.LogLevel {
 		switch levelNum {
 		case -1:
@@ -77,4 +79,52 @@ func (e *ErrorHandler) LogMsg(levelNum int, message string) {
 
 func (e *ErrorHandler) SlackAlert() {
 	// TODO fill in with slack webhook to alert error
+}
+
+func (ac *appContext) DBErrorCheck(err error, query string, c *gin.Context) bool {
+	ac.Log.Msg(0, "Query: "+query)
+
+	ac.Log.Msg(0, "-----------------------------")
+	switch err {
+	case nil:
+		ac.Log.Msg(0, "Query good")
+	case sql.ErrNoRows:
+		ac.Log.Msg(1, "Now rows returned")
+	default:
+		ac.Log.Msg(0, "----------ERROR--------------")
+		ac.Log.Msg(3, "DB Query failed: "+err.Error())
+		ac.AbortMsg(500, err, c)
+		return false
+	}
+	ac.Log.Msg(0, "-----------------------------")
+	return true
+}
+
+func (ac *appContext) AbortMsg(code int, err error, c *gin.Context) bool {
+	var errFile string
+	var errMsg string
+
+	if ac.ConfigData.Debug > 0 {
+		errMsg = err.Error()
+	}
+
+	switch code {
+	case http.StatusNotFound:
+		errFile = "errors/404"
+	case http.StatusNotAcceptable:
+		errFile = "errors/verification"
+	case http.StatusInternalServerError:
+		errFile = "errors/500"
+	}
+
+	ac.Log.Msg(3, "Aborting: "+err.Error())
+
+	c.HTML(code, errFile, gin.H{
+		"error": errMsg,
+	})
+
+	c.Error(err)
+	c.Abort()
+
+	return false
 }

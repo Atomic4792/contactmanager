@@ -1,27 +1,16 @@
 {
-  "LogFile": "www.advanced_id.error.log",
+  "LogFile": "error.log",
   "LogFormat": "text",
   "LogLevel": 1,
-  "APIkey": "TheAPIKey",
   "ListenIP": "127.0.0.1",
-  "ListenPort": "8080",
+  "ListenPort": "3000",
   "SessionHours": 1,
   "SlackChannel": "#target-channel",
   "SlackHook": "URI to slack hook",
-  "SMS": {
-    "Secret": "telnyxSecret",
-    "URL":"https://sms.telnyx.com/messages",
-    "From": "Originating DID"
-  },
-  "Redis": {
-    "Host": "127.0.0.1",
-    "Port": "6379",
-    "Size": "1"
-  },
   "SQL": {
     "Host": "127.0.0.1",
     "Port": "5432",
-    "DBname": "advancedid",
+    "DBname": "contacts",
     "User": "advanced",
     "Password": "set!Application:Password"
   }
