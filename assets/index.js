@@ -1,5 +1,11 @@
 
 $().ready( function() {
+    $( function() {
+        $( "#contactList").accordion({
+            collapsible: true
+        });
+    });
+
     console.log('ready state');
     $('#save').on("click",function(){
         console.log('button log');
@@ -18,12 +24,6 @@ $().ready( function() {
         let fullName =firstName +' '+ lastName;
 
        // $(".group-list").append('<div class="accordion">'+'<h3>'+fullName+'</h3>'+'<div>' + '' + '<p>'+phoneNumber+'</p'+ '</div>' +'</div>');
-
-        $( function() {
-            $( "#contactList").accordion({
-                collapsible: true
-            });
-        });
 
      /*   $(".group-list").append('<button class="accordion">'+fullName+'</button>'+'<div class="panel" '+ '' +
             '<p>'+phoneNumber+'</p'+

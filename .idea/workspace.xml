@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="de3f6e75-8004-4478-bf83-f742ffb76a91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site.go" beforeDir="false" afterPath="$PROJECT_DIR$/site.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layouts/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layouts/default.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,19 +68,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/index.js">
+        <entry file="file://$PROJECT_DIR$/templates/layouts/default.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="150">
+              <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/site.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+            <state relative-caret-position="765">
+              <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
               <folding>
                 <element signature="e#14#71#0" expanded="true" />
               </folding>
@@ -112,10 +122,11 @@
         <option value="$PROJECT_DIR$/SQL/initial_schema.sql" />
         <option value="$PROJECT_DIR$/config.go" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/assets/index.js" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/templates/main/index.html" />
         <option value="$PROJECT_DIR$/site.go" />
+        <option value="$PROJECT_DIR$/templates/layouts/default.html" />
+        <option value="$PROJECT_DIR$/assets/index.js" />
       </list>
     </option>
   </component>
@@ -153,6 +164,12 @@
               <item name="contactmanager" type="b2602c69:ProjectViewProjectNode" />
               <item name="contactmanager" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="contactmanager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="contactmanager" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contactmanager" type="b2602c69:ProjectViewProjectNode" />
@@ -214,7 +231,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="26" width="1926" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="DB Browser" />
       <window_info id="Favorites" side_tool="true" />
@@ -279,7 +295,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+    <MESSAGE value="db works" />
+    <option name="LAST_COMMIT_MESSAGE" value="db works" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/SQL/2018-11-12_initial_schema.sql">
@@ -302,13 +319,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/error-handling.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-810">
@@ -326,13 +336,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -342,11 +345,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/site.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        <state relative-caret-position="765">
+          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
           <folding>
             <element signature="e#14#71#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layouts/default.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
