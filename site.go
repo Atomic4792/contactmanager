@@ -17,15 +17,15 @@ type formPostData struct {
 }
 
 type ContactInfo struct {
-	ID          string `json:"id"`
-	FirstName   string `json:"first_name"`
-	LastName    string `json:"last_name"`
-	Phone       int    `json:"phone"`
-	OfficePhone int    `json:"office_phone"`
-	City        string `json:"city"`
-	State       string `json:"state"`
-	Zip         string `json:"zip"`
-	Enabled     bool   `json:"enabled"`
+	ID          string `sql:"id" json:"id"`
+	FirstName   string `sql:"first_name" json:"first_name"`
+	LastName    string `sql:"last_name" json:"last_name"`
+	Phone       int    `sql:"phone" json:"phone"`
+	OfficePhone int    `sql:"office_phone" json:"office_phone"`
+	City        string `sql:"city" json:"city"`
+	State       string `sql:"state" json:"state"`
+	Zip         string `sql:"zip" json:"zip"`
+	Enabled     bool   `sql:"enabled" json:"enabled"`
 }
 
 func NewContact() ContactInfo {
@@ -38,8 +38,7 @@ func (ac *appContext) ShowIndex(c *gin.Context) {
 
 	query :=
 		` select 
-			id, first_name, last_name, phone, office_phone, 
-			city, state, zip, enabled 
+			id, first_name , last_name, phone, office_phone, city, state, zip, enabled 
 		from contacts 
 		where 
 			enabled
@@ -47,21 +46,31 @@ func (ac *appContext) ShowIndex(c *gin.Context) {
 
 	rows, err := ac.DB.Query(query)
 	if check := ac.DBErrorCheck(err, query, c); check == false {
+		ac.Log.Msg(1, "db error")
 		return
 	}
 	defer rows.Close()
 
 	var contacts []ContactInfo
 
+	ac.Log.Msg(1, "before assignment")
 	for rows.Next() {
 		contact := NewContact()
 
-		rows.Scan(&contact.ID, &contact.FirstName, &contact.LastName, &contact.OfficePhone, &contact.City,
-			&contact.State, &contact.Zip, &contact.Enabled)
+		err := rows.Scan(&contact.ID, &contact.FirstName, &contact.LastName, &contact.Phone, &contact.OfficePhone,
+			&contact.City, &contact.State, &contact.Zip, &contact.Enabled)
+		if err != nil {
+			ac.Log.Msg(3, fmt.Sprintf("Error scanning row: %s", err.Error()))
+		}
+
+		ac.Log.Msg(1, fmt.Sprintf("%#v", contact))
+
 		contacts = append(contacts, contact)
 	}
 
-	c.HTML(http.StatusOK, "main/index", gin.H{"contacts": contacts})
+	c.HTML(http.StatusOK, "main/index", gin.H{
+		"contacts": contacts,
+	})
 
 }
 
