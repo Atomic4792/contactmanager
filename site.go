@@ -92,7 +92,15 @@ func (ac *appContext) uploadContact(c *gin.Context) {
 	ac.DBErrorCheck(err, query, c)
 
 }
+func (ac *appContext) editContact(c *gin.Context) {
 
+}
+func (ac *appContext) saveContact(c *gin.Context) {
+
+}
+func (ac *appContext) deleteContact(c *gin.Context) {
+
+}
 /*func (ac *appContext) handlerPostData(c *gin.Context) {
 	ac.Log.Msg(1, "in context handler post data")
 	var form formPostData

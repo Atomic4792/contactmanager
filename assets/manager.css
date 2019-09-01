@@ -113,6 +113,21 @@ input {
     border: 1px solid #000;
     margin-top: 10px;
 }
+.themFields{
+    display: block;
+}
+
+.listButtons {
+    display: inline-block;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+
+}
+.contactInformation{
+    position: relative;
+}
 /*
 .group-list {
     list-style-type: none;

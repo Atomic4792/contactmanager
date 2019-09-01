@@ -8,6 +8,9 @@
     <form name="contactForm" id="contactForm" method="post">
         <fieldset>
         <div class="form-group">
+
+            <input type="hidden" name="contactID" id="contactID" value="0"/>
+
             <label for="firstName">First Name:</label>
             <div class="form-input">
                 <input name="firstName" id="firstName" value=""/>
@@ -61,15 +64,23 @@
     <div id="contactList">
         {{ range .contacts }}
             <h3>name {{ .FirstName  }} {{ .LastName }}</h3>
-            <div>
-                phone {{ .Phone }}
+            <div class="contactInformation">
+                <div class="themFields">
+                Phone: {{ .Phone }}
+                City: {{ .City }}
+                </div>
+                <div class="listButtons">
+                    <button type="button" id="edit" onclick="">Edit</button>
+                    <button type="button" id="delete" onclick="">Delete</button>
+                </div>
+
             </div>
+
         {{ end }}
     </div>
 </div>
         <!-- TODO
     <div class="List-Details">
-        <input type="hidden" name="firstNameList" id="firstNameList" value="0"/>
         <input type="hidden" name="lastNameList" id="lastNameList" value="0"/>
         <input type="hidden" name="phoneList" id="phoneList" value="0"/>
         <input type="hidden" name="officePhoneList" id="officePhoneList" value="0"/>
