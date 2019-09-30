@@ -23,26 +23,25 @@ $().ready( function() {
         let phoneNumber = $("#phone").val();
         let fullName =firstName +' '+ lastName;
 
-       // $(".group-list").append('<div class="accordion">'+'<h3>'+fullName+'</h3>'+'<div>' + '' + '<p>'+phoneNumber+'</p'+ '</div>' +'</div>');
 
-     /*   $(".group-list").append('<button class="accordion">'+fullName+'</button>'+'<div class="panel" '+ '' +
-            '<p>'+phoneNumber+'</p'+
-            '</div>'
-        );
-        let acc = document.getElementsByClassName("accordion");
-        let i;
+    })
+    $('#editButton').on("click",function(){
+        console.log('loading contact');
+            $.post("/editContact",{
+                contactID: ID,
+            }).done(function(r){
+                $("#contactID").val( r.ID );
+                $("#firstName").val( r.FirstName );
+                $("#lastName").val( r.LastName );
+                $("#phone").val( r.Phone );
+                $("#city").val( r.City );
+                $("#state").val( r.State );
+                $("#zip").val( r.Zip );
 
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                let panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        } */
+
+
+            })
+
     })
 
 });

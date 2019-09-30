@@ -7,13 +7,18 @@ import (
 )
 
 type formPostData struct {
-	FirstName   string `form:"firstName"`
-	LastName    string `form:"lastName"`
-	Phone       int    `form:"phone"`
-	OfficePhone int    `form:"officePhone"`
-	City        string `form:"city"`
-	State       string `form:"state"`
-	Zip         string `form:"zip"`
+	ID          string `form:"contactID"sql:"id" json:"id"` //I don't think conactID is getting any values
+	FirstName   string `form:"firstName"sql:"first_name" json:"first_name"`
+	LastName    string `form:"lastName"sql:"last_name" json:"last_name"`
+	Phone       int    `form:"phone"sql:"phone" json:"phone"`
+	OfficePhone int    `form:"officePhone"sql:"office_phone" json:"office_phone"`
+	City        string `form:"city"sql:"city" json:"city"`
+	State       string `form:"state"sql:"state" json:"state"`
+	Zip         string `form:"zip"sql:"zip" json:"zip"`
+}
+
+func NewFormPostData() formPostData {
+	return formPostData{}
 }
 
 type ContactInfo struct {
@@ -93,7 +98,35 @@ func (ac *appContext) uploadContact(c *gin.Context) {
 
 }
 func (ac *appContext) editContact(c *gin.Context) {
+	form := NewFormPostData()
 
+	if err := c.Bind(&form); err != nil {
+		ac.Log.Msg(3, fmt.Sprintf("bind error: %s", err.Error()))
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	query := `
+		select 
+			id, first_name, last_name, phone, office_phone, city, 
+state, zip 
+		from contacts 
+		where
+			id = $1
+	`
+	row := ac.DB.QueryRow(query, &form.ID)
+	err := row.Scan(&form.ID, &form.FirstName, &form.Phone, &form.OfficePhone, &form.City, form.State, form.Zip)
+	if check := ac.DBErrorCheck(err, query, c); check == false {
+		ac.AbortMsg(http.StatusInternalServerError, err, c)
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"ID":        form.ID,
+		"FirstName": form.FirstName,
+		"LastName":  form.LastName,
+		"Phone":     form.Phone,
+		"City":      form.City,
+		"State":     form.State,
+		"Zip":       form.Zip,
+	})
 }
 func (ac *appContext) saveContact(c *gin.Context) {
 
@@ -101,21 +134,3 @@ func (ac *appContext) saveContact(c *gin.Context) {
 func (ac *appContext) deleteContact(c *gin.Context) {
 
 }
-/*func (ac *appContext) handlerPostData(c *gin.Context) {
-	ac.Log.Msg(1, "in context handler post data")
-	var form formPostData
-	if err := c.Bind(&form); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	query := "insert into contacts (first_name, last_name, phone, office_phone, " +
-		"city, state, zip) " +
-		"values ($1, $2, $3, $4, $5, $6, $7)"
-	_, err := ac.DB.Exec(query, &form.FirstName, &form.LastName, &form.Phone,
-		&form.OfficePhone, &form.City, &form.State, &form.Zip)
-	ac.DBErrorCheck(err, query)
-	ac.LoadAppDefaults()
-		c.String(http.StatusOK,fmt.Sprintln("all good bro"))
-}
-
-*/

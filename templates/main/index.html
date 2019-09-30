@@ -66,11 +66,13 @@
             <h3>name {{ .FirstName  }} {{ .LastName }}</h3>
             <div class="contactInformation">
                 <div class="themFields">
-                Phone: {{ .Phone }}
-                City: {{ .City }}
+                    Phone: {{ .Phone }} </br>
+                    City: {{ .City }} </br>
+                    State: {{ .State }} </br>
+                    Zip: {{ .Zip }} </br>
                 </div>
                 <div class="listButtons">
-                    <button type="button" id="edit" onclick="">Edit</button>
+                    <button type="button" id="editButton" onclick="">Edit</button>
                     <button type="button" id="delete" onclick="">Delete</button>
                 </div>
 

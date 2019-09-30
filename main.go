@@ -47,12 +47,9 @@ func main() {
 	r.GET("/index", context.ShowIndex)
 	r.GET("/index.html", context.ShowIndex)
 	r.POST("/formData", context.uploadContact)
-	r.POST("saveUpdate",context.saveContact)
-	r.POST("deleteContact",context.deleteContact)
-	r.POST("editContact",context.editContact)
-
-
-
+	r.POST("/saveUpdate", context.saveContact)
+	r.POST("/deleteContact", context.deleteContact)
+	r.POST("/editContact", context.editContact)
 
 	_ = r.Run(context.ConfigData.ListenIP + ":" + context.ConfigData.ListenPort)
 }
