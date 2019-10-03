@@ -54,8 +54,12 @@
         </div>
 
 
+    <div class="formButtons">
+        <button type="button" id="save" onclick="">Save</button>
+        <button type="button" id="newContact" onclick="clearContact();">New</button>
 
-            <button type="button" class="sign-up-button" id="save" onclick="">Submit</button>
+
+    </div>
         </fieldset>
     </form>
     </div>
@@ -63,7 +67,7 @@
 <div class="split right">
     <div id="contactList">
         {{ range .contacts }}
-            <h3>name {{ .FirstName  }} {{ .LastName }}</h3>
+            <h3> {{ .FirstName  }} {{ .LastName }}</h3>
             <div class="contactInformation">
                 <div class="themFields">
                     Phone: {{ .Phone }} </br>
@@ -72,8 +76,8 @@
                     Zip: {{ .Zip }} </br>
                 </div>
                 <div class="listButtons">
-                    <button type="button" id="editButton" onclick="">Edit</button>
-                    <button type="button" id="delete" onclick="">Delete</button>
+                    <button type="button" id="editButton" onclick="loadContact('{{ .ID }}');">Edit</button>
+                    <button type="button" id="delete" onclick="deleteContact('{{ .ID }}');">Delete</button>
                 </div>
 
             </div>

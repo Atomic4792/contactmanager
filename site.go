@@ -114,23 +114,86 @@ state, zip
 			id = $1
 	`
 	row := ac.DB.QueryRow(query, &form.ID)
-	err := row.Scan(&form.ID, &form.FirstName, &form.Phone, &form.OfficePhone, &form.City, form.State, form.Zip)
+	err := row.Scan(&form.ID, &form.FirstName, &form.LastName, &form.Phone, &form.OfficePhone, &form.City, &form.State, &form.Zip)
 	if check := ac.DBErrorCheck(err, query, c); check == false {
 		ac.AbortMsg(http.StatusInternalServerError, err, c)
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"ID":        form.ID,
-		"FirstName": form.FirstName,
-		"LastName":  form.LastName,
-		"Phone":     form.Phone,
-		"City":      form.City,
-		"State":     form.State,
-		"Zip":       form.Zip,
+		"ID":          form.ID,
+		"FirstName":   form.FirstName,
+		"LastName":    form.LastName,
+		"Phone":       form.Phone,
+		"OfficePhone": form.OfficePhone,
+		"City":        form.City,
+		"State":       form.State,
+		"Zip":         form.Zip,
 	})
 }
 func (ac *appContext) saveContact(c *gin.Context) {
+	form := NewFormPostData()
+
+	if err := c.Bind(&form); err != nil {
+		ac.Log.Msg(3, fmt.Sprintf("bind error: %s", err.Error()))
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	if form.ID == "" {
+		query := `insert into contacts (first_name, last_name, phone, office_phone, city, state, zip)
+values ('$1','$2','$3','$4','$5','$6','$7') returning id; `
+		row := ac.DB.QueryRow(query, &form.FirstName, &form.LastName, &form.Phone, &form.OfficePhone, &form.City, &form.State, &form.Zip)
+		err := row.Scan(&form.ID)
+		if check := ac.DBErrorCheck(err, query, c); check == false {
+			ac.AbortMsg(http.StatusInternalServerError, err, c)
+		}
+	} else {
+		query := `
+			update user_contacts set 
+				first_name = $1,
+				last_name = $2,
+				phone = $3,
+				office_phone = $4,
+				city= $5,
+				state= $6,
+				zip= $7
+
+			where
+				id = $8
+		`
+		res, err := ac.DB.Exec(query, &form.FirstName, &form.LastName, &form.Phone, &form.OfficePhone, &form.City, &form.State,  &form.Zip)
+		if check := ac.DBErrorCheck(err, query, c); check == false {
+			ac.AbortMsg(http.StatusInternalServerError, err, c)
+			return
+		}
+		ra, _ := res.RowsAffected()
+
+		ac.Log.Msg(0, fmt.Sprintf("rows affected [ %d ]", ra))
+
+
+
+
+	}
 
 }
 func (ac *appContext) deleteContact(c *gin.Context) {
+	form := NewFormPostData()
+
+	if err := c.Bind(&form); err != nil {
+		ac.Log.Msg(3, fmt.Sprintf("bind error: %s", err.Error()))
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	query := `
+		delete from contacts
+		where
+			id = $1
+`
+
+	res, err := ac.DB.Exec(query, &form.ID)
+	if check := ac.DBErrorCheck(err, query, c); check == false {
+		ac.AbortMsg(http.StatusInternalServerError, err, c)
+		return
+	}
+	ra, err := res.RowsAffected()
+	ac.Log.Msg(0, fmt.Sprintf("rows affected [ %d ]", ra))
 
 }

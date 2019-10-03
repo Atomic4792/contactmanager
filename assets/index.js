@@ -25,24 +25,64 @@ $().ready( function() {
 
 
     })
-    $('#editButton').on("click",function(){
-        console.log('loading contact');
-            $.post("/editContact",{
-                contactID: ID,
-            }).done(function(r){
-                $("#contactID").val( r.ID );
-                $("#firstName").val( r.FirstName );
-                $("#lastName").val( r.LastName );
-                $("#phone").val( r.Phone );
-                $("#city").val( r.City );
-                $("#state").val( r.State );
-                $("#zip").val( r.Zip );
 
-
-
-            })
-
-    })
 
 });
+
+function loadContact(ID) {
+    console.log(ID);
+    $.post("/editContact",{
+        contactID: ID,
+    }).done(function(r){
+        $("#contactID").val( r.ID );
+        $("#firstName").val( r.FirstName );
+        $("#lastName").val( r.LastName );
+        $("#phone").val( r.Phone );
+        $("#officePhone").val( r.OfficePhone );
+        $("#city").val( r.City );
+        $("#state").val( r.State );
+        $("#zip").val( r.Zip );
+
+
+
+    }).fail(function (r) {
+        console.log(r);
+    });
+}
+
+function clearContact() {
+    console.log('clearContact()');
+    $("#contactID").val('');
+    $("#firstName").val('');
+    $("#lastName").val('');
+    $("#phone").val('');
+    $("#officePhone").val('');
+    $("#city").val('');
+    $("#state").val('');
+    $("#zip").val('');
+
+}
+
+
+function deleteContact(ID) {
+    console.log('deleteContact()')
+    $.post("/deleteContact", {
+        contactID: ID,
+    }).done(function () {
+        console.log('Contact Deleted');
+        clearContact();
+    }).fail(function () {
+        console.log('Contact was not deleted');
+    });
+
+}
+
+
+
+
+
+
+
+
+
 
