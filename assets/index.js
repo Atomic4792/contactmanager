@@ -8,24 +8,27 @@ $().ready( function() {
 
     console.log('ready state');
     $('#save').on("click",function(){
-        console.log('button log');
-        let jsonData=$("#contactForm").serialize()
+        console.log('on save');
 
-        console.log(jsonData);
+        $.post( "/saveUpdate",
+            {
+                contactID: $("#contactID").val(),
+                firstName: $("#firstName").val(),
+                lastName: $("#lastName").val(),
+                phone: $("#phone").val(),
+                officePhone: $("#officePhone").val(),
+                city: $("#city").val(),
+                state: $("#state").val(),
+                zip: $("#zip").val(),
 
-        $.post( "/formData", jsonData)
-            .done(function( data ) {
-                console.log( "Data Loaded: " + (JSON.parse(data)).data );
+            })
+            .done(function( ) {
+                console.log("might've done it");
+                clearContact();
             });
-
-        let firstName = $("#firstName").val();
-        let lastName = $("#lastName").val();
-        let phoneNumber = $("#phone").val();
-        let fullName =firstName +' '+ lastName;
 
 
     })
-
 
 });
 
@@ -76,6 +79,7 @@ function deleteContact(ID) {
     });
 
 }
+
 
 
 

@@ -79,7 +79,7 @@ func (ac *appContext) ShowIndex(c *gin.Context) {
 
 }
 
-func (ac *appContext) uploadContact(c *gin.Context) {
+/*func (ac *appContext) uploadContact(c *gin.Context) {
 	var form formPostData
 
 	if err := c.Bind(&form); err != nil {
@@ -96,7 +96,7 @@ func (ac *appContext) uploadContact(c *gin.Context) {
 		&form.OfficePhone, &form.City, &form.State, &form.Zip)
 	ac.DBErrorCheck(err, query, c)
 
-}
+} */
 func (ac *appContext) editContact(c *gin.Context) {
 	form := NewFormPostData()
 
@@ -139,7 +139,7 @@ func (ac *appContext) saveContact(c *gin.Context) {
 	}
 	if form.ID == "" {
 		query := `insert into contacts (first_name, last_name, phone, office_phone, city, state, zip)
-values ('$1','$2','$3','$4','$5','$6','$7') returning id; `
+values ($1, $2, $3, $4, $5, $6, $7) returning id; `
 		row := ac.DB.QueryRow(query, &form.FirstName, &form.LastName, &form.Phone, &form.OfficePhone, &form.City, &form.State, &form.Zip)
 		err := row.Scan(&form.ID)
 		if check := ac.DBErrorCheck(err, query, c); check == false {
@@ -147,7 +147,7 @@ values ('$1','$2','$3','$4','$5','$6','$7') returning id; `
 		}
 	} else {
 		query := `
-			update user_contacts set 
+			update contacts set 
 				first_name = $1,
 				last_name = $2,
 				phone = $3,
@@ -159,7 +159,7 @@ values ('$1','$2','$3','$4','$5','$6','$7') returning id; `
 			where
 				id = $8
 		`
-		res, err := ac.DB.Exec(query, &form.FirstName, &form.LastName, &form.Phone, &form.OfficePhone, &form.City, &form.State,  &form.Zip)
+		res, err := ac.DB.Exec(query, &form.FirstName, &form.LastName, &form.Phone, &form.OfficePhone, &form.City, &form.State,  &form.Zip, &form.ID)
 		if check := ac.DBErrorCheck(err, query, c); check == false {
 			ac.AbortMsg(http.StatusInternalServerError, err, c)
 			return
