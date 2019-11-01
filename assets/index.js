@@ -23,7 +23,7 @@ $().ready( function() {
 
             })
             .done(function( ) {
-                console.log("might've done it");
+                console.log("might've done it lol");
                 clearContact();
             });
 
